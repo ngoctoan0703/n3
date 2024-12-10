@@ -1,58 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
 using System.Windows.Forms;
-using System.Security.Cryptography.X509Certificates;
 
 namespace làm_việc_nhóm_3
 {
     internal class function
-
     {
-        // kết nối dữ liệu
-        protected SqlConnection getConnection()
-        {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Data Source=ADMIN\\SQLEXPRESS01;Initial Catalog=QLikhachsan;Integrated Security=True";
-            return con;
-        }
+            // kết nối dữ liệu
+            protected SqlConnection getConnection()
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Admin\\OneDrive\\Hình ảnh\\Tài liệu\\dbks.mdf\";Integrated Security=True;Connect Timeout=30";
+                return con;
+            }
         // lấy dữ liệu
-        public DataSet GetData(String query)
+        public DataSet GetData(string query)
         {
-            // con mở kn đến cơ sở dữ liệu
-            SqlConnection con = getConnection();
-            // thực thi clệnh trên sql
-            SqlCommand cmd = new SqlCommand();
-            // gán conect cho đt cmd giúp cmd thực thi
-            cmd.Connection = con;
-            // lệnh sql đc thực thi 
-            cmd.CommandText = query;
-            // lấy data từ Dataset, nối csdl và ứng dụng 
-            SqlDataAdapter da = new SqlDataAdapter();
-            // lưu trữ csdl khi truy vấn, dtaset bộ nhớ tạm 
             DataSet ds = new DataSet();
-            // thực thi và điền kq sau khi truy vấn
-            da.Fill(ds);
+            try
+            {
+                SqlConnection con = getConnection();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = query;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Xảy ra lỗi: " + ex.Message);
+            }
             return ds;
-
         }
+
+
         // update dữ liệu
         public void setData(string query, string message)
-        {
-            SqlConnection con = getConnection();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            // mở csdl
-            con.Open();
-            cmd.CommandText = query;
-            cmd.ExecuteNonQuery();
-            con.Close();
+            {
+                SqlConnection con = getConnection();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                // mở csdl
+                con.Open();
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+                con.Close();
 
-            MessageBox.Show(message);
-        }
+                MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            public SqlDataReader getForCombo(string query)
+            {
+                SqlConnection con = getConnection();
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader sdr = cmd.ExecuteReader(); // ExecuteReader trả về SqlDataReader
+                return sdr;
+            }
+        
+
     }
+
 }

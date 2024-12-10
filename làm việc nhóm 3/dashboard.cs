@@ -24,16 +24,11 @@ namespace làm_việc_nhóm_3
         }
         private void dashboard_Load(object sender, EventArgs e)
         {
-            uc_picture1.Visible = false;
-            uc_addroom1.Visible = false;
+        
+            uc_addroom1.Visible = true;
             uc_register1.Visible = false;
-            btncheckout.PerformClick();
-        }
-        private void btncheckout_Click(object sender, EventArgs e)
-        {
-            panelmoving.Left = btncheckout.Left + 50;
-            uc_picture1.Visible = true;
-            uc_picture1.BringToFront();
+            uc_addroom1.BringToFront();
+
         }
         private void btnaddroom_Click(object sender, EventArgs e)
         {

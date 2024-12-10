@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtaGView = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtrnumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
@@ -43,7 +43,7 @@
             this.txttypebed = new Guna.UI2.WinForms.Guna2ComboBox();
             this.btnaddroom = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtaGView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,16 +63,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // dataGridView1
+            // dtaGView
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 99);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(846, 563);
-            this.dataGridView1.TabIndex = 2;
+            this.dtaGView.BackgroundColor = System.Drawing.Color.White;
+            this.dtaGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtaGView.Location = new System.Drawing.Point(36, 99);
+            this.dtaGView.Name = "dtaGView";
+            this.dtaGView.RowHeadersWidth = 62;
+            this.dtaGView.RowTemplate.Height = 28;
+            this.dtaGView.Size = new System.Drawing.Size(846, 563);
+            this.dtaGView.TabIndex = 2;
             // 
             // label2
             // 
@@ -137,9 +137,13 @@
             this.txttype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txttype.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttype.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttype.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttype.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txttype.ForeColor = System.Drawing.Color.Black;
             this.txttype.ItemHeight = 30;
+            this.txttype.Items.AddRange(new object[] {
+            "President",
+            "King",
+            "Queen"});
             this.txttype.Location = new System.Drawing.Point(1068, 201);
             this.txttype.Name = "txttype";
             this.txttype.Size = new System.Drawing.Size(420, 36);
@@ -193,9 +197,14 @@
             this.txttypebed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txttypebed.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttypebed.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttypebed.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttypebed.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txttypebed.ForeColor = System.Drawing.Color.Black;
             this.txttypebed.ItemHeight = 30;
+            this.txttypebed.Items.AddRange(new object[] {
+            "One",
+            "Double",
+            "Three",
+            "Four"});
             this.txttypebed.Location = new System.Drawing.Point(1068, 316);
             this.txttypebed.Name = "txttypebed";
             this.txttypebed.Size = new System.Drawing.Size(420, 36);
@@ -220,6 +229,7 @@
             this.btnaddroom.Size = new System.Drawing.Size(180, 45);
             this.btnaddroom.TabIndex = 12;
             this.btnaddroom.Text = "Thêm Phòng";
+            this.btnaddroom.Click += new System.EventHandler(this.btnaddroom_Click);
             // 
             // guna2Elipse2
             // 
@@ -239,12 +249,15 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtrnumber);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtaGView);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.Name = "uc_addroom";
             this.Size = new System.Drawing.Size(1516, 852);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.uc_addroom_Load);
+            this.Enter += new System.EventHandler(this.uc_addroom_Enter);
+            this.Leave += new System.EventHandler(this.uc_addroom_Leave);
+            ((System.ComponentModel.ISupportInitialize)(this.dtaGView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,7 +267,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtaGView;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox txtrnumber;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;

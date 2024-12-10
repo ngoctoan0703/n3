@@ -58,12 +58,6 @@
     <Compile Include="all user control\uc_addroom.Designer.cs">
       <DependentUpon>uc_addroom.cs</DependentUpon>
     </Compile>
-    <Compile Include="all user control\uc_picture.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="all user control\uc_picture.Designer.cs">
-      <DependentUpon>uc_picture.cs</DependentUpon>
-    </Compile>
     <Compile Include="all user control\uc_register.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,13 +76,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="function.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="all user control\uc_addroom.resx">
       <DependentUpon>uc_addroom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="all user control\uc_picture.resx">
-      <DependentUpon>uc_picture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="all user control\uc_register.resx">
       <DependentUpon>uc_register.cs</DependentUpon>
